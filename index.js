@@ -1,8 +1,8 @@
 let form = document.querySelector("#upload");
 let file = document.querySelector("#file");
 let app = document.querySelector("#app");
-let result=document.querySelector("#result")
-const url = "http://127.0.0.1:5000";
+let result = document.querySelector("#result");
+const url = "http://localhost:3001/predict";
 
 function convertImageToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ function logFile(event) {
   let str = event.target.result;
   let img = document.createElement("img");
   img.src = str;
-  img.height=100
+  img.height = 100;
   app.append(img);
 }
 
@@ -36,7 +36,6 @@ const handleSubmit = (event) => {
 
   imageInput = file.files[0];
   convertImageToBase64(imageInput).then((base64Image) => {
-    console.log(base64Image)
     fetch(url, {
       method: "POST",
       headers: {
@@ -46,7 +45,7 @@ const handleSubmit = (event) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);

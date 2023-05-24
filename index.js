@@ -45,7 +45,7 @@ const handleSubmit = (event) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        result.innerHTML = data.output;
       })
       .catch((error) => {
         console.error(error);

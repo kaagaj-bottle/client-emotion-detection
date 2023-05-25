@@ -10,8 +10,8 @@ function displayRecommendedSongs(songs_arr) {
   const num = songs_arr.length;
   for (let i = 0; i < num; i++) {
     let song_element = document.createElement("div");
-    song_element.className="song"
-    song_element.innerHTML=`<a href=${songs_arr[i].url}>${songs_arr[i].name}</a>`
+    song_element.className = "song";
+    song_element.innerHTML = `<a href=${songs_arr[i].url} target="_blank">${songs_arr[i].name}</a>`;
     songsBox.appendChild(song_element);
   }
 }

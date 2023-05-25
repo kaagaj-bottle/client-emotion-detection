@@ -1,8 +1,20 @@
 let form = document.querySelector("#upload");
 let file = document.querySelector("#file");
 let app = document.querySelector("#app");
-let result = document.querySelector("#result");
+let mood = document.querySelector("#result");
+let songsBox = document.querySelector("#songs");
+
 const url = "http://localhost:3001/predict";
+
+function displayRecommendedSongs(songs_arr) {
+  const num = songs_arr.length;
+  for (let i = 0; i < num; i++) {
+    let song_element = document.createElement("div");
+    song_element.className="song"
+    song_element.innerHTML=`<a href=${songs_arr[i].url}>${songs_arr[i].name}</a>`
+    songsBox.appendChild(song_element);
+  }
+}
 
 function convertImageToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -45,7 +57,8 @@ const handleSubmit = (event) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        result.innerHTML = data.output;
+        mood.innerHTML = data.mood;
+        displayRecommendedSongs(data.songs_recommendation);
       })
       .catch((error) => {
         console.error(error);

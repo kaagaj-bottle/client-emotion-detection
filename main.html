@@ -13,7 +13,12 @@
     <div id="app"></div>
 
     <form id="upload">
-      <label for="file">File to upload</label>
+      <label for="file"
+        >File to upload:
+        <div>Requirements:</div>
+        <div>1. Aspect Ratio must be 1:1</div>
+        <div>2. Image size must be less than 100KB</div>
+      </label>
       <input type="file" id="file" accept="image/*" />
       <button>predict</button>
     </form>

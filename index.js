@@ -3,6 +3,8 @@ let file = document.querySelector("#file");
 let app = document.querySelector("#app");
 let mood = document.querySelector("#result");
 let songsBox = document.querySelector("#songs");
+let nextImageEl = document.querySelector("#nextImageEl");
+let flag = 0;
 
 const url = "http://localhost:3001/predict";
 
@@ -37,11 +39,14 @@ const handleSubmit = (event) => {
   event.preventDefault();
   if (!file.value.length) return;
 
-  // Create a new FileReader() object
-  let reader = new FileReader();
+  if (flag === 0) {
+    // Create a new FileReader() object
+    var reader = new FileReader();
 
-  // Setup the callback event to run when the file is read
-  reader.onload = logFile;
+    // Setup the callback event to run when the file is read
+    reader.onload = logFile;
+    flag = 1;
+  }
 
   // Read the file
   reader.readAsDataURL(file.files[0]);
@@ -67,3 +72,8 @@ const handleSubmit = (event) => {
 };
 
 form.addEventListener("submit", handleSubmit);
+nextImageEl.addEventListener("click", (e) => {
+  e.preventDefault();
+  flag = 0;
+  window.location.reload();
+});

@@ -29,7 +29,7 @@ function logFile(event) {
   let str = event.target.result;
   let img = document.createElement("img");
   img.src = str;
-  img.height = 100;
+  img.height = 200;
   app.append(img);
 }
 
